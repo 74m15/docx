@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg) -->
+<Root>
+	<year.current>2016</year.current>
+	<year.previous>2015</year.previous>
+	<year.next>2017</year.next>
+	
+	<shortcut.open>$data/Workbook/Worksheet[@Name='</shortcut.open>
+	<shortcut.close>']/Table</shortcut.close>
+	
+	<Table id="T0010" template="table_0010" root='$data/Workbook/Worksheet[@Name="T0010"]/Table'/>
+	<Table id="T0020" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0020"]/Table'/>
+	<Table id="T0030" template="table_0010" root='$data/Workbook/Worksheet[@Name="T0030"]/Table'/>
+	<Table id="T0040" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0040"]/Table'/>
+	<Table id="T0050" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0050"]/Table'/>
+	<Table id="T0060" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0060"]/Table'/>
+	<Table id="T0070" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0070"]/Table'/>
+	<Table id="T0080" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0080"]/Table'/>
+	<Table id="T0090" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0090"]/Table'/>
+	<Table id="T0100" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0100"]/Table'/>
+	<Table id="T0110" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0110"]/Table'/>
+	<Table id="T0120" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0120"]/Table'/>
+	<Table id="T0130" template="table_0030" root='$data/Workbook/Worksheet[@Name="T0130"]/Table'/>
+	<Table id="T0140" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0140"]/Table'/>
+	<Table id="T0150" template="table_0030" root='$data/Workbook/Worksheet[@Name="T0150"]/Table'/>
+	<Table id="T0160" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0160"]/Table'/>
+	<Table id="T0170" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0170"]/Table'/>
+	<Table id="T0180" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0180"]/Table'/>
+	<Table id="T0190" template="table_0030" root='$data/Workbook/Worksheet[@Name="T0190"]/Table'/>
+	<Table id="T0200" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0200"]/Table'/>
+	<Table id="T0210" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0210"]/Table'/>
+	<Table id="T0220" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0220"]/Table'/>
+	<Table id="T0230" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0230"]/Table'/>
+	<Table id="T0240" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0240"]/Table'/>
+	<Table id="T0250" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0250"]/Table'/>
+	<Table id="T0260" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0260"]/Table'/>
+	<Table id="T0270" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0270"]/Table'/>
+	<Table id="T0280" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0280"]/Table'/>
+	<Table id="T0290" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0290"]/Table'/>
+	<Table id="T0300" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0300"]/Table'/>
+	<Table id="T0310" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0310"]/Table'/>
+	<Table id="T0320" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0320"]/Table'/>
+	<Table id="T0330" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0330"]/Table'/>
+	<Table id="T0340" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0340"]/Table'/>
+	<Table id="T0350" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0350"]/Table'/>
+	<Table id="T0360" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0360"]/Table'/>
+	<Table id="T0370" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0370"]/Table'/>
+	<Table id="T0380" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0380"]/Table'/>
+	<Table id="T0390" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0390"]/Table'/>
+	<Table id="T0400" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0400"]/Table'/>
+	<Table id="T0410" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0410"]/Table'/>
+	<Table id="T0420" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0420"]/Table'/>
+	<Table id="T0430" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0430"]/Table'/>
+	<Table id="T0440" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0440"]/Table'/>
+	<Table id="T0450" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0450"]/Table'/>
+	<Table id="T0460" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0460"]/Table'/>
+	<Table id="T0470" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0470"]/Table'/>
+	<Table id="T0480" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0480"]/Table'/>
+	<Table id="T0490" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0490"]/Table'/>
+	<Table id="T0500" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0500"]/Table'/>
+	<Table id="T0510" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0510"]/Table'/>
+	<Table id="T0511" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0511"]/Table'/>
+	<Table id="T0520" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0520"]/Table'/>
+	<Table id="T0530" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0530"]/Table'/>
+	<Table id="T0540" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0540"]/Table'/>
+	<Table id="T0550" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0550"]/Table'/>
+	<Table id="T0560" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0560"]/Table'/>
+	<Table id="T0570" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0570"]/Table'/>
+	<Table id="T0580" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0580"]/Table'/>
+	<Table id="T0590" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0590"]/Table'/>
+	<Table id="T0600" template="table_0020" root='$data/Workbook/Worksheet[@Name="T0600"]/Table'/>
+</Root>
