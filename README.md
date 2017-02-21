@@ -1,4 +1,4 @@
-*# docx
+# docx
 Tools for *docx* manipulation.
 
 ## Introduzione
