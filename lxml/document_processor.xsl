@@ -444,10 +444,10 @@
 						
 						<xsl:choose>
 							<xsl:when test="$table_template = 'table_0010'">
-								<xsl:call-template name="log_error">
-									<xsl:with-param name="msg">Template 'table_0010' not implemented yet! just copying table "<xsl:value-of select="$table"/>"...</xsl:with-param>
+								<xsl:call-template name="table_0010">
+									<xsl:with-param name="table-id" select="$table_template"/>
+									<xsl:with-param name="table-data" select="$db//Table[@name = $table]"/>
 								</xsl:call-template>
-								<xsl:copy-of select="."/>
 							</xsl:when>
 							<xsl:when test="$table_template = 'table_0020'">
 								<xsl:call-template name="table_0020">
@@ -456,10 +456,10 @@
 								</xsl:call-template>
 							</xsl:when>
 							<xsl:when test="$table_template = 'table_0030'">
-								<xsl:call-template name="log_error">
-									<xsl:with-param name="msg">Template 'table_0030' not implemented yet! just copying table "<xsl:value-of select="$table"/>"...</xsl:with-param>
+								<xsl:call-template name="table_0030">
+									<xsl:with-param name="table-id" select="$table_template"/>
+									<xsl:with-param name="table-data" select="$db//Table[@name = $table]"/>
 								</xsl:call-template>
-								<xsl:copy-of select="."/>
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:call-template name="log_error">

@@ -6,7 +6,9 @@
 	xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 	
 	xmlns:regexp="http://exslt.org/regular-expressions"
-    extension-element-prefixes="regexp">
+	xmlns:str="http://exslt.org/strings"
+	
+    extension-element-prefixes="regexp str">
 	
 	<xsl:include href="debug.xsl"/>
 	
@@ -78,7 +80,7 @@
 									<xsl:attribute name="id"><xsl:value-of select="$c_id"/></xsl:attribute>
 									<xsl:attribute name="C"><xsl:value-of select="$c_col"/></xsl:attribute>
 									<xsl:choose>
-										<xsl:when test="@t"><xsl:value-of select="$strings//s:si[number($v) + 1]/s:t"/></xsl:when>
+										<xsl:when test="@t"><xsl:value-of select="str:concat($strings//s:si[number($v) + 1]//s:t)"/></xsl:when>
 										<xsl:otherwise><xsl:value-of select="$v"/></xsl:otherwise>
 									</xsl:choose>
 								</xsl:element>
