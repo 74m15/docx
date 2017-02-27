@@ -14,21 +14,40 @@
 	
 	<xsl:output method="xml" encoding="utf-8" version="1.0" indent="yes" standalone="yes"/>
 	
-	<xsl:param name="base_dir">./database.xlsx/xl/</xsl:param>
+	<xsl:param name="db_base_dir">../work/database/</xsl:param>
+	<xsl:param name="xlsx_filename">database.xlsx</xsl:param>
 	<xsl:param name="workbook_filename">workbook.xml</xsl:param>
 	<xsl:param name="shared_strings_filename">sharedStrings.xml</xsl:param>
-	<xsl:param name="db" select="document(concat($base_dir, $workbook_filename))"/>
-	<xsl:param name="strings" select="document(concat($base_dir, $shared_strings_filename))"/>
+	<xsl:param name="wb_full_filename" select="concat($db_base_dir, $xlsx_filename, '/xl/', $workbook_filename)"/>
+	<xsl:param name="wb" select="document($wb_full_filename)"/>
+	<xsl:param name="strings_full_filename" select="concat($db_base_dir, $xlsx_filename, '/xl/', $shared_strings_filename)"/>
+	<xsl:param name="strings" select="document($strings_full_filename)"/>
+	<xsl:param name="config_base_dir">../</xsl:param>
 	<xsl:param name="config_filename">config.xml</xsl:param>
-	<xsl:param name="config" select="document($config_filename)"/>
+	<xsl:param name="config_full_filename" select="concat($config_base_dir, $config_filename)"/>
+	<xsl:param name="config" select="document($config_full_filename)"/>
 	
 	<xsl:template match="/">
+		<xsl:call-template name="log_info">
+			<xsl:with-param name="msg">
+				Configuration: db_base_dir="<xsl:value-of select="$db_base_dir"/>" __newline__
+				Configuration: config_base_dir="<xsl:value-of select="$config_base_dir"/>" __newline__
+				Configuration: wb="<xsl:value-of select="$wb_full_filename"/>" (present: <xsl:value-of select="boolean(count($wb/*))"/>) __newline__
+				Configuration: strings="<xsl:value-of select="$strings_full_filename"/>" (present: <xsl:value-of select="boolean(count($strings/*))"/>) __newline__
+				Configuration: config="<xsl:value-of select="$config_full_filename"/>" (present: <xsl:value-of select="boolean(count($config/*))"/>)
+			</xsl:with-param>
+		</xsl:call-template>
+		
+		<xsl:call-template name="log_info">
+			<xsl:with-param name="msg">Transformation starting...</xsl:with-param>
+		</xsl:call-template>
+		
 		<xsl:call-template name="log_debug">
 			<xsl:with-param name="msg">Entering DOM root element</xsl:with-param>
 		</xsl:call-template>
 		
 		<xsl:element name="Database">
-			<xsl:for-each select="$db//s:sheet">
+			<xsl:for-each select="$wb//s:sheet">
 				<xsl:variable name="sheet_name" select="@name"/>
 				<xsl:variable name="sheet_id" select="substring-after(@r:id, 'rId')"/>
 				
@@ -45,7 +64,7 @@
 			</xsl:for-each>
 		</xsl:element>
 		
-		<xsl:call-template name="log_debug">
+		<xsl:call-template name="log_info">
 			<xsl:with-param name="msg">That's all folks!</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
@@ -54,13 +73,14 @@
 		<xsl:param name="sheet_name"/>
 		<xsl:param name="sheet_id"/>
 		
-		<xsl:variable name="sheet_filename" select="concat($base_dir, 'worksheets/sheet',$sheet_id,'.xml')"/>
+		<xsl:variable name="sheet_filename" select="concat('sheet', $sheet_id, '.xml')"/>
+		<xsl:variable name="sheet_full_filename" select="concat($db_base_dir, $xlsx_filename, '/xl/worksheets/', $sheet_filename)"/>
 		
-		<xsl:call-template name="log_debug">
-			<xsl:with-param name="msg">Loading sheet file <xsl:value-of select="$sheet_filename"/></xsl:with-param>
+		<xsl:call-template name="log_info">
+			<xsl:with-param name="msg">Loading sheet file <xsl:value-of select="$sheet_full_filename"/></xsl:with-param>
 		</xsl:call-template>
 		
-		<xsl:variable name="sheet" select="document($sheet_filename)"/>
+		<xsl:variable name="sheet" select="document($sheet_full_filename)"/>
 		
 		<xsl:choose>
 			<xsl:when test="$sheet">

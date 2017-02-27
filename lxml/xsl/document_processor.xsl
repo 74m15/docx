@@ -38,15 +38,22 @@
 	
 	<xsl:output method="xml" encoding="utf-8" version="1.0" indent="yes" standalone="yes" omit-xml-declaration="no"/>
 	
-	<xsl:param name="base_dir">./template.docx/word/</xsl:param>
+	<xsl:param name="docx_filename">template.docx</xsl:param>
+	<xsl:param name="doc_base_dir">../work/document/</xsl:param>
 	<xsl:param name="document_filename">document.xml</xsl:param>
 	<xsl:param name="comments_filename">comments.xml</xsl:param>
-	<xsl:param name="document" select="document(concat($base_dir, $document_filename))"/>
-	<xsl:param name="comments" select="document(concat($base_dir, $comments_filename))"/>
+	<xsl:param name="document_full_filename" select="concat($doc_base_dir, $docx_filename, '/word/', $document_filename)"/>
+	<xsl:param name="comments_full_filename" select="concat($doc_base_dir, $docx_filename, '/word/', $comments_filename)"/>
+	<xsl:param name="document" select="document($document_full_filename)"/>
+	<xsl:param name="comments" select="document($comments_full_filename)"/>
+	<xsl:param name="db_base_dir">../work/database/</xsl:param>
 	<xsl:param name="db_filename">database.xml</xsl:param>
-	<xsl:param name="db" select="document($db_filename)"/>
+	<xsl:param name="db_full_filename" select="concat($db_base_dir, $db_filename)"/>
+	<xsl:param name="db" select="document($db_full_filename)"/>
+	<xsl:param name="config_base_dir">../</xsl:param>
 	<xsl:param name="config_filename">config.xml</xsl:param>
-	<xsl:param name="config" select="document($config_filename)"/>
+	<xsl:param name="config_full_filename" select="concat($config_base_dir, $config_filename)"/>
+	<xsl:param name="config" select="document($config_full_filename)"/>
 	
 
 	<xsl:decimal-format name="it-format" decimal-separator="," grouping-separator="."/>
@@ -290,10 +297,13 @@
 	<xsl:template match="/">
 		<xsl:call-template name="log_info">
 			<xsl:with-param name="msg">
-				Configuration: base_dir="<xsl:value-of select="$base_dir"/>" __newline__
-				Configuration: document_filename="<xsl:value-of select="$document_filename"/>" (present: <xsl:value-of select="boolean(count($document/*))"/>) __newline__
-				Configuration: comments_filename="<xsl:value-of select="$comments_filename"/>" (present: <xsl:value-of select="count($comments//w:comment)"/>) __newline__
-				Configuration: db_filename="<xsl:value-of select="$db_filename"/>" (present: <xsl:value-of select="count($db//Table)"/>) __newline__
+				Configuration: doc_base_dir="<xsl:value-of select="$doc_base_dir"/>" __newline__
+				Configuration: db_base_dir="<xsl:value-of select="$db_base_dir"/>" __newline__
+				Configuration: config_base_dir="<xsl:value-of select="$config_base_dir"/>" __newline__
+				Configuration: document="<xsl:value-of select="$document_full_filename"/>" (present: <xsl:value-of select="boolean(count($document/*))"/>) __newline__
+				Configuration: comments="<xsl:value-of select="$comments_full_filename"/>" (present: <xsl:value-of select="boolean(count($comments/*))"/>) __newline__
+				Configuration: database="<xsl:value-of select="$db_full_filename"/>" (present: <xsl:value-of select="boolean(count($db/*))"/>) __newline__
+				Configuration: config_filename="<xsl:value-of select="$config_full_filename"/>" (present: <xsl:value-of select="boolean(count($config/*))"/>) __newline__
 				Configuration: dummy_fill="<xsl:value-of select="$dummy_fill"/>" (dummy: <xsl:value-of select="boolean(number($dummy_fill))"/>)
 			</xsl:with-param>
 		</xsl:call-template>

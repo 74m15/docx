@@ -37,24 +37,25 @@ echo DUMMY  = %DUMMY%
 echo LOG    = %LOG%
 
 echo Unzipping document...
-cp %IN% %IN_new%
-unzip -d %IN_new_dir% %IN_new%
+cp work\document\%IN% work\document\%IN_new%
+unzip -d work\document\%IN_new_dir% work\document\%IN_new%
 
 echo Processing document...
-set ARGS_1=-in dummy.xml -xsl document_processor.xsl -out ./%IN_new_dir%/word/new_document.xml
-set ARGS_2=-p log_level=%LOG% -p base_dir='./%IN_new_dir%/word/' -p dummy_fill=%DUMMY%
+set ARGS_1=-in dummy.xml -xsl ./xsl/document_processor.xsl -out "./work/document/%IN_new_dir%/word/new_document.xml"
+set ARGS_2=-p log_level=%LOG% -p docx_filename='%IN_new_dir%' -p dummy_fill=%DUMMY%
 python xslt.py %ARGS_1% %ARGS_2%
 
 echo Finishing document...
-rm ./%IN_new_dir%/word/document.xml
-mv ./%IN_new_dir%/word/new_document.xml ./%IN_new_dir%/word/document.xml
+rm work/document/%IN_new_dir%/word/document.xml
+mv work/document/%IN_new_dir%/word/new_document.xml work/document/%IN_new_dir%/word/document.xml
 
-pushd %IN_new_dir%
+pushd work\document\%IN_new_dir%
 
-zip -u  ..\%IN_new% word\document.xml
+zip -u ..\%IN_new% word\document.xml
 
 popd
 
-rm -rf %IN_new_dir%
+rm -rf work/document/%IN_new_dir%
 
+:FINISH
 echo Document "%IN_new%" ready!
