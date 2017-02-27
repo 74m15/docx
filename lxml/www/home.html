@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <h1><u>docx</u> project</h1>
+    <p>
+      Please, upload the files you need to process and remember that you
+      can feed "database.xml" file instead of processing XLSX file to
+      improve performance (if database content did not change, of course).
+    </p>
+    <form action="upload" method="post" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <td>XLSX file</td>
+          <td><input type="file" name="xlsx"/></td>
+        </tr>
+        <tr>
+          <td>DB <i>database.xml</i> file</td>
+          <td><input type="file" name="db"/></td>
+        </tr>
+        <tr>
+          <td>DOCX template file</td>
+          <td><input type="file" name="docx"/></td>
+        </tr>
+      </table>
+
+      <input type="submit" value="Go!"/>
+    </form>
+  </body>
+</html>
