@@ -29,13 +29,13 @@ def do_upload():
   out_id = str(uuid1())
   
   if (xlsx):
-    xlsx.save("work\database\{0}.xlsx".format(in_id))
+    xlsx.save("work/database/{0}.xlsx".format(in_id))
   
   if (db):
-    db.save("work\database\{0}.xml".format(in_id))
+    db.save("work/database/{0}.xml".format(in_id))
     
   if (docx):
-    docx.save("work\document\{0}.docx".format(in_id))
+    docx.save("work/document/{0}.docx".format(in_id))
   
   args = [
     "process.bat", 
@@ -43,8 +43,13 @@ def do_upload():
     "-db", "{0}.xml".format(in_id), 
     "-out", "{0}.docx".format(out_id),
     "-log", "1"]
-  
-  proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+  try:  
+    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  except:
+    args[0] = "./process.sh"
+
+    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   
   result = proc.communicate()
   
