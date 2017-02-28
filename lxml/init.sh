@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mkdir work
 mkdir work/document
