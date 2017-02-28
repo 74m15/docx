@@ -1,11 +1,22 @@
 <html>
   <body>
     <h1>docx</h1>
-    <p>Wow! You got it! <a href="/docs/{{target}}">DOCX</a></p>
     <p>Process a <a href="/">new document</a></p>
-    <h2>stdout</h2>
-    <pre>{{out}}</pre>
-    <h2>stderr</h2>
-    <pre>{{err}}</pre>
+    <% if defined("db") and db: %>
+      <h2>Database</h2>
+      <p>Wow! You can download the new database from <a href="/database/{{db["output"]}}">here</a>!</p>
+      <h3>stdout</h3>
+      <pre>{{db["stdout"]}}</pre>
+      <h3>stderr</h3>
+      <pre>{{db["stderr"]}}</pre>
+    <% end %>
+    <% if defined("doc") and doc: %>
+      <h2>Document</h2>
+      <p>Wow! You can download the new document from <a href="/docs/{{doc["output"]}}">here</a>!</p>
+      <h3>stdout</h3>
+      <pre>{{doc["stdout"]}}</pre>
+      <h3>stderr</h3>
+      <pre>{{doc["stderr"]}}</pre>
+    <% end %>
   </body>
 </html>
