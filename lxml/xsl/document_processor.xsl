@@ -161,8 +161,14 @@
 				<xsl:variable name="table" select="$part[2]"/>
 				<xsl:variable name="row" select="$part[3]"/>
 				<xsl:variable name="cell" select="$part[4]"/>
+				<xsl:variable name="value" select="$db/Database/Table[@name = $table]/Row[@R = $row]/Cell[@C = $cell]"/>
 				
-				<func:result select="$db/Database/Table[@name = $table]/Row[@R = $row]/Cell[@C = $cell]"/>
+				<xsl:choose>
+					<xsl:when test="number(translate($value, ',', '')) != number('NaN')">
+						<func:result select="translate($value, ',', '')"/>
+					</xsl:when>
+					<xsl:otherwise><func:result select="$value"/></xsl:otherwise>
+				</xsl:choose>
 			</xsl:otherwise>
 		</xsl:choose>
 	</func:function>
