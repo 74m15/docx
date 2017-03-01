@@ -220,8 +220,8 @@ con il linguaggio XPath.
 Sono definite le seguenti funzioni per la formattazione finale del risultato:
 
 *	`ni:integer` - numero intero senza decimali e con raggruppamento delle migliaia (#.##0)
-*	`ni:percent` - percentuale con due decimali e simbolo “%” (#.##0,00%)
-*	`ni:percent3` - percentuale con tre decimali e simbolo “%”(#.##0,000%)
+*	`ni:percent` - percentuale con due decimali e simbolo "%" (#.##0,00%)
+*	`ni:percent3` - percentuale con tre decimali e simbolo "%"(#.##0,000%)
 *	`ni:double` - numero con due decimali e raggruppamento delle migliaia (#.##0,00)
 *	`ni:money` - valore senza decimali e con raggruppamento delle migliaia (#.##0)
 *	`ni:string` - testo semplice senza formattazione (default)
@@ -232,7 +232,7 @@ Per `<expression>` sono valide le seguenti considerazioni:
     dove `<table>` indica il nome della tabella (es. "T0010") e `<cell>` indica l'indirizzo della
     cella, espressa in una delle due forme tipiche del mondo spreadsheet (es. "R2C4" ovvero "D2")
 *	  possono essere utilizzate tutte le funzioni standard XPath (es. `position()`)
-*	  possono essere utilizzate tutte le funzioni del package “math” dell'estensione EXSLT 
+*	  possono essere utilizzate tutte le funzioni del package `math` dell'estensione EXSLT 
     (es. `math:abs()`)
 
 Esempi:
@@ -243,8 +243,8 @@ Esempi:
     cella posta alla riga 10 e alla colonna 12 ovvero la cella "L10"
 *   `xml:ni:money([T0010!L10])` per formattare come valuta l'importo del punto precedente
 *   `xml:ni:money([T0010!R10C12] + [T0030!R21C12])` per fare la somma dei valori presenti, rispettivamente, 
-    a) nella tabella “T0010” alla riga 10 e alla colonna 12 e b) nella tabella “T0030” alla riga 21 e 
-    alla colonna 12, poi formattare tutto con il formato “ni:money”
+    a) nella tabella "T0010" alla riga 10 e alla colonna 12 e b) nella tabella "T0030" alla riga 21 e 
+    alla colonna 12, poi formattare tutto con il formato "ni:money"
 *   `xml:ni:money(math:abs([T0010!R10C12] - [T0010!R10C5]))` per calcolare il valore assoluto (formattato 
-    come “ni:money”) della differenza di due celle, rispettivamente, a) quella nella tabella “T0010” alla 
-    riga 10 e alla colonna 12 e b) quella nella tabella “T0010” alla riga 10 e alla colonna 5
+    come "ni:money") della differenza di due celle, rispettivamente, a) quella nella tabella "T0010" alla 
+    riga 10 e alla colonna 12 e b) quella nella tabella "T0010" alla riga 10 e alla colonna 5
