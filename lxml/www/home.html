@@ -20,6 +20,21 @@
           <td>DOCX template file</td>
           <td><input type="file" name="docx"/></td>
         </tr>
+        <tr>
+          <td>LOG Level</td>
+          <td>
+            <select name="log">
+              <option value="0">debug</option>
+              <option value="1" selected="true">info (DEFAULT)</option>
+              <option value="2">warning</option>
+              <option value="3">error</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td/>
+          <td><input type="checkbox" name="dummy"/> Dummy fill</td>
+        </tr>
       </table>
 
       <input type="submit" value="Go!"/>

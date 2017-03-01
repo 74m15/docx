@@ -13,6 +13,12 @@ import os.path
 
 app = Bottle()
 
+def defaultValue(f, d):
+  if (f is None or len(f) == 0):
+    return d
+  else:
+    return f
+
 @app.get("/")
 def home():
   return template("www/home.html")
@@ -27,9 +33,11 @@ def get_docs(path):
   
 @app.post("/upload")
 def do_upload():
-  xlsx = request.files.get("xlsx")
-  db   = request.files.get("db")
-  docx = request.files.get("docx")
+  xlsx  = request.files.get("xlsx")
+  db    = request.files.get("db")
+  docx  = request.files.get("docx")
+  log   = str(defaultValue(request.forms.get("log"), "1"))
+  dummy = bool(defaultValue(request.forms.get("dummy"),"0"))
   
   in_id = str(uuid1())
   out_id = str(uuid1())
@@ -54,8 +62,8 @@ def do_upload():
       process_string, 
       "-in", "{0}.xlsx".format(in_id),
       "-out", "{0}.xml".format(out_id),
-      "-log", "1"]
-  
+      "-log", log]
+      
     proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     proc_out = proc.communicate()
     
@@ -69,8 +77,11 @@ def do_upload():
       "-in", "{0}.docx".format(in_id),
       "-db", "{0}.xml".format(in_id), 
       "-out", "{0}.docx".format(out_id),
-      "-log", "1"]
-  
+      "-log", log]
+    
+    if (dummy):
+      args.append("-dummy")
+    
     proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     proc_out = proc.communicate()
     
