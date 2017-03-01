@@ -46,6 +46,6 @@ set ARGS_1=-in dummy.xml -xsl xsl/database_generator.xsl -out work/database/%OUT
 set ARGS_2=-p log_level=%LOG% -p xlsx_filename='%IN_dir%'
 python xslt.py %ARGS_1% %ARGS_2%
 
-rem rm -rf work/database/%IN_dir%
+rm -rf work/database/%IN_dir%
 
 echo Database "database.xml" ready!

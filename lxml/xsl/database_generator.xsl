@@ -49,7 +49,14 @@
 		<xsl:element name="Database">
 			<xsl:for-each select="$wb//s:sheet">
 				<xsl:variable name="sheet_name" select="@name"/>
-				<xsl:variable name="sheet_id" select="substring-after(@r:id, 'rId')"/>
+				<xsl:variable name="sheet_id">
+					<xsl:choose>
+						<xsl:when test="count($wb/s:workbook/s:fileVersion) + count($wb/s:workbook/bookViews) &gt; 0">
+							<xsl:value-of select="substring-after(@r:id, 'rId')"/>
+						</xsl:when>
+						<xsl:otherwise><xsl:value-of select="@sheetId"/></xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
 				
 				<xsl:if test="count($config//Table[@id = $sheet_name]) &gt; 0">
 					<xsl:call-template name="log_info">
@@ -87,7 +94,7 @@
 				<xsl:element name="Table">
 					<xsl:attribute name="name"><xsl:value-of select="$sheet_name"/></xsl:attribute>
 					
-					<xsl:for-each select="$sheet//s:row">
+					<xsl:for-each select="$sheet//s:row[string-length(.) &gt; 0]">
 						<xsl:element name="Row">
 							<xsl:attribute name="R"><xsl:value-of select="@r"/></xsl:attribute>
 							
@@ -100,7 +107,7 @@
 									<xsl:attribute name="id"><xsl:value-of select="$c_id"/></xsl:attribute>
 									<xsl:attribute name="C"><xsl:value-of select="$c_col"/></xsl:attribute>
 									<xsl:choose>
-										<xsl:when test="@t"><xsl:value-of select="str:concat($strings//s:si[number($v) + 1]//s:t)"/></xsl:when>
+										<xsl:when test="@t = 's'"><xsl:value-of select="str:concat($strings//s:si[number($v) + 1]//s:t)"/></xsl:when>
 										<xsl:otherwise><xsl:value-of select="$v"/></xsl:otherwise>
 									</xsl:choose>
 								</xsl:element>

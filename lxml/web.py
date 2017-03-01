@@ -37,7 +37,9 @@ def do_upload():
   db    = request.files.get("db")
   docx  = request.files.get("docx")
   log   = str(defaultValue(request.forms.get("log"), "1"))
-  dummy = bool(defaultValue(request.forms.get("dummy"),"0"))
+  dummy = bool(defaultValue(request.forms.get("dummy"),0))
+  
+  print("Dummy: ", request.forms.get("dummy"), dummy)
   
   in_id = str(uuid1())
   out_id = str(uuid1())

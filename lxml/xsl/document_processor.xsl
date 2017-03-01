@@ -77,7 +77,7 @@
 		
 		<xsl:choose>
 			<xsl:when test="string-length(normalize-space($value)) &gt; 0">
-				<func:result select="format-number($value, $money-format, 'it-format')"/>
+				<func:result select="format-number(translate($value, ',', ''), $money-format, 'it-format')"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="$value"/>
@@ -90,7 +90,7 @@
 		
 		<xsl:choose>
 			<xsl:when test="string-length(normalize-space($value)) &gt; 0">
-				<func:result select="format-number($value, $double-format, 'it-format')"/>
+				<func:result select="format-number(translate($value, ',', ''), $double-format, 'it-format')"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="$value"/>
@@ -103,7 +103,7 @@
 		
 		<xsl:choose>
 			<xsl:when test="string-length(normalize-space($value)) &gt; 0">
-				<func:result select="format-number($value, $percent-format, 'it-format')"/>
+				<func:result select="format-number(translate($value, ',', ''), $percent-format, 'it-format')"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="$value"/>
@@ -116,7 +116,7 @@
 		
 		<xsl:choose>
 			<xsl:when test="string-length(normalize-space($value)) &gt; 0">
-				<func:result select="format-number($value, $percent3-format, 'it-format')"/>
+				<func:result select="format-number(translate($value, ',', ''), $percent3-format, 'it-format')"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="$value"/>
@@ -129,7 +129,7 @@
 		
 		<xsl:choose>
 			<xsl:when test="string-length(normalize-space($value)) &gt; 0">
-				<func:result select="format-number($value, $integer-format, 'it-format')"/>
+				<func:result select="format-number(translate($value, ',', ''), $integer-format, 'it-format')"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="$value"/>
@@ -147,8 +147,14 @@
 				<xsl:variable name="table" select="$partRC[2]"/>
 				<xsl:variable name="row" select="$partRC[3]"/>
 				<xsl:variable name="cell" select="$partRC[4]"/>
-
-				<func:result select="$db/Database/Table[@name = $table]/Row[number($row)]/Cell[number($cell)]"/>
+				<xsl:variable name="value" select="$db/Database/Table[@name = $table]/Row[number($row)]/Cell[number($cell)]"/>
+				
+				<xsl:choose>
+					<xsl:when test="number(translate($value, ',', '')) != number('NaN')">
+						<func:result select="translate($value, ',', '')"/>
+					</xsl:when>
+					<xsl:otherwise><func:result select="$value"/></xsl:otherwise>
+				</xsl:choose>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:variable name="part" select="regexp:match($addr, '([A-Za-z0-9]+)!([A-Z]+)([0-9]+)')"/>
