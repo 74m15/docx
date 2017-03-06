@@ -17,14 +17,20 @@ until [ -z "$1" ]; do
     shift
   fi
 
+  if [ $1 = "-db-out" ]; then
+    DB_OUT=$2
+    shift
+    shift
+  fi
+  
   if [ $1 = "-doc" ]; then
     DOC=$2
     shift
     shift
   fi
   
-  if [ $1 = "-out" ]; then
-    OUT=$2
+  if [ $1 = "-doc-out" ]; then
+    DOC_OUT=$2
     shift
     shift
   fi
