@@ -57,7 +57,25 @@ def do_upload():
     docx.save(os.path.join("work", "document", "{0}.docx".format(in_id)))
   
   
-  if (xlsx):
+  if (xlsx and docx):
+    process_string = "docx.bat" if system() == "Windows" else "./docx.sh"
+    
+    args = [
+      process_string, 
+      "-doc", "{0}.docx".format(in_id),
+      "-db", "{0}.xlsx".format(in_id), 
+      "-out", "{0}.docx".format(out_id),
+      "-log", log]
+    
+    if (dummy):
+      args.append("-dummy")
+    
+    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc_out = proc.communicate()
+    
+    doc_out = { "output" : "{0}.docx".format(out_id), "stdout" : proc_out[0], "stderr" : proc_out[1] }
+    
+  elif (xlsx):
     process_string = "prepare-db.bat" if system() == "Windows" else "./prepare-db.sh"
     
     args = [
@@ -71,7 +89,7 @@ def do_upload():
     
     db_out = { "output" : "{0}.xml".format(out_id), "stdout" : proc_out[0], "stderr" : proc_out[1] }
     
-  if (db and docx):
+  elif (db and docx):
     process_string = "process.bat" if system() == "Windows" else "./process.sh"
     
     args = [

@@ -36,8 +36,6 @@ echo OUT    = %OUT%
 echo IN_dir = %IN_dir%
 echo LOG    = %LOG%
 
-@echo on
-
 echo Unzipping spreadsheet...
 unzip -d work\database\%IN_dir% work\database\%IN%
 

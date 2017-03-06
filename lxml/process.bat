@@ -72,5 +72,4 @@ popd
 
 rm -rf work/document/%OUT_dir%
 
-:FINISH
 echo Document "%OUT%" ready!

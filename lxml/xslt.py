@@ -12,9 +12,7 @@ from lxml import etree
 
 class MyExtElement(etree.XSLTExtension):
   def __init__(self):
-    print("Initializing...!")
-    super(etree.XSLTExtension, self).__init__()
-    
+    super(etree.XSLTExtension, self).__init__()    
     self.cache = list()
   
   def get_only_text(self, element):
