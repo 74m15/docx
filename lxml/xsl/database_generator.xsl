@@ -5,10 +5,12 @@
 	xmlns:s="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 	xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 	
+	xmlns:_ni="urn:informatica-aci.it:sap:private:ni"
+	
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:str="http://exslt.org/strings"
 	
-    extension-element-prefixes="regexp str">
+    extension-element-prefixes="_ni regexp str">
 	
 	<xsl:include href="debug.xsl"/>
 	
@@ -45,6 +47,10 @@
 		<xsl:call-template name="log_debug">
 			<xsl:with-param name="msg">Entering DOM root element</xsl:with-param>
 		</xsl:call-template>
+		
+		<_ni:cache>
+			<xsl:copy-of select="$strings/s:sst/s:si"/>
+		</_ni:cache>		
 		
 		<xsl:element name="Database">
 			<xsl:for-each select="$wb//s:sheet">
@@ -107,7 +113,8 @@
 									<xsl:attribute name="id"><xsl:value-of select="$c_id"/></xsl:attribute>
 									<xsl:attribute name="C"><xsl:value-of select="$c_col"/></xsl:attribute>
 									<xsl:choose>
-										<xsl:when test="@t = 's'"><xsl:value-of select="str:concat($strings//s:si[number($v) + 1]//s:t)"/></xsl:when>
+										<!--xsl:when test="@t = 's'"><xsl:value-of select="str:concat($strings//s:si[number($v) + 1]//s:t)"/></xsl:when-->
+										<xsl:when test="@t = 's'"><xsl:value-of select="_ni:get-cache(number($v))"/></xsl:when>
 										<xsl:otherwise><xsl:value-of select="$v"/></xsl:otherwise>
 									</xsl:choose>
 								</xsl:element>

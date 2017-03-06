@@ -9,6 +9,38 @@ import sys
 from argparse import ArgumentParser
 from lxml import etree
 
+
+class MyExtElement(etree.XSLTExtension):
+  def __init__(self):
+    print("Initializing...!")
+    super(etree.XSLTExtension, self).__init__()
+    
+    self.cache = list()
+  
+  def get_only_text(self, element):
+    if (len(element) == 0):
+      return str(element.text)
+    else:
+      return "".join([self.get_only_text(child) for child in element])
+    
+    
+  def execute(self, context, self_node, input_node, output_parent):
+    try:
+      res = self.process_children(context, elements_only=False, remove_blank_text=True)
+      
+      for element in res:
+        self.cache.append(self.get_only_text(element))
+    except Exception as ex:
+      print("execute(...) raised an exception: {0}".format(ex))
+  
+  def get_cache(self, context, idx):
+    try:
+      return self.cache[int(idx)]
+    except:
+      print("cache[{0}]".format(int(idx)))
+      
+      return self.cache[int(idx)]
+
 def getOutputFile(out):
     if (isinstance(out, str)):
         return open(out, "wb")
@@ -67,20 +99,29 @@ if (__name__ == "__main__"):
     # step 2.1: open the input file
     xslt_file = open(args_xsl,"rb")
     
-    # step 2.2: read the input file
-    xslt = etree.XSLT(etree.parse(xslt_file))
+    # step 2.2: prepare XPath/XSLT extensions
+    my_ext = MyExtElement()
+    extensions = { ('urn:informatica-aci.it:sap:private:ni', 'cache') : my_ext }
     
-    # step 3: apply the transformation
+    ns = etree.FunctionNamespace("urn:informatica-aci.it:sap:private:ni")
+    ns.prefix = "_ni"
+    ns["get-cache"] = my_ext.get_cache
     
-    # step 3.1: transform
+    # step 2.3: read the input file
+    xslt = etree.XSLT(etree.parse(xslt_file), extensions=extensions)
+    
+    # step 3: apply the transformation    
+    
     try:
+      # step 3.1: transform
       result = xslt(xml, **args_params)
     
       # step 3.2: write output
       result.write(args_out)
-      #print(unicode(result), file=args_out)
-    except:
-      pass
+      args_out.flush()
+      args_out.close()
+    except Exception as ex:
+      print(ex)
     
     # step 3.3: write error log
     for item in xslt.error_log:

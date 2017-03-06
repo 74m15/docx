@@ -28,7 +28,7 @@ def get_docs(path):
   return static_file(path, root='work/document/')
 
 @app.get("/database/<path:path>")
-def get_docs(path):
+def get_db(path):
   return static_file(path, root='work/database/')
   
 @app.post("/upload")

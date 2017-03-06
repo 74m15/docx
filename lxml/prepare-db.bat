@@ -1,7 +1,7 @@
 @echo off
 
-set IN="database.xlsx"
-set OUT="database.xml"
+set IN=database.xlsx
+set OUT=database.xml
 set LOG=1
 
 :parse_args

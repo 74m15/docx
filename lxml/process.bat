@@ -1,8 +1,8 @@
 @echo off
 
-set IN="template.docx"
-set OUT="new.template.docx"
-set DB="database.xml"
+set IN=template.docx
+set OUT=new.template.docx
+set DB=database.xml
 set DUMMY=0
 set LOG=1
 
