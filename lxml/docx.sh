@@ -46,7 +46,6 @@ until [ -z "$1" ]; do
     shift
   fi
 
-  shift
 done
 
 DB_dir="$DB".dir

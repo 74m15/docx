@@ -64,7 +64,8 @@ def do_upload():
       process_string, 
       "-doc", "{0}.docx".format(in_id),
       "-db", "{0}.xlsx".format(in_id), 
-      "-out", "{0}.docx".format(out_id),
+      "-db-out", "{0}.xml".format(out_id),
+      "-doc-out", "{0}.docx".format(out_id),
       "-log", log]
     
     if (dummy):
