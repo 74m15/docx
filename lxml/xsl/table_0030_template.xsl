@@ -333,54 +333,56 @@
 								<xsl:variable name="pos" select="count(preceding-sibling::Cell) + 1"/>
 								<xsl:variable name="cell-type" select="../../Row[1]/Cell[position() = $pos]"/>
 								
-								<w:tc>
-									<w:tcPr>
-										<w:tcW w:w="0" w:type="auto"/>
-										<w:tcBorders>
-											<w:top w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
-											<w:left w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
-											<w:bottom w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
-											<w:right w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
-										</w:tcBorders>
-										<w:shd w:val="clear" w:color="auto" w:fill="auto"/>
-										<w:vAlign w:val="center"/>
-									</w:tcPr>
-									<w:p>
-										<w:pPr>
-											<xsl:choose>
-												<xsl:when test="$row-type = 'header'">
-													<w:jc w:val="center"/>
-												</xsl:when>
-												<xsl:otherwise>
-													<xsl:choose>
-														<xsl:when test="$cell-type = 'string'"><w:jc w:val="left"/></xsl:when>
-														<xsl:otherwise><w:jc w:val="right"/></xsl:otherwise>
-													</xsl:choose>
-												</xsl:otherwise>
-											</xsl:choose>
-										</w:pPr>
-										<w:r>
-											<w:rPr>
-												<xsl:if test="$row-type = 'header' or $row-type = 'row-highlight'">
-													<w:b/>
-													<w:bCs/>
-												</xsl:if>
-												<w:sz w:val="16"/>
-												<w:szCs w:val="16"/>
-											</w:rPr>
-											<xsl:element name="w:t">
+								<xsl:if test="string-length($cell-type) &gt; 0 and $cell-type != '#'">
+									<w:tc>
+										<w:tcPr>
+											<w:tcW w:w="0" w:type="auto"/>
+											<w:tcBorders>
+												<w:top w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
+												<w:left w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
+												<w:bottom w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
+												<w:right w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>
+											</w:tcBorders>
+											<w:shd w:val="clear" w:color="auto" w:fill="auto"/>
+											<w:vAlign w:val="center"/>
+										</w:tcPr>
+										<w:p>
+											<w:pPr>
 												<xsl:choose>
-													<xsl:when test="$row-type = 'header' or $cell-type = 'string'">
-														<xsl:value-of select="_ni:pretty-print(string(.), false())"/>
+													<xsl:when test="$row-type = 'header'">
+														<w:jc w:val="center"/>
 													</xsl:when>
 													<xsl:otherwise>
-														<xsl:value-of select="_ni:pretty-print(concat('ni:', $cell-type, '(&quot;', string(.), '&quot;)'), true())"/>
+														<xsl:choose>
+															<xsl:when test="$cell-type = 'string'"><w:jc w:val="left"/></xsl:when>
+															<xsl:otherwise><w:jc w:val="right"/></xsl:otherwise>
+														</xsl:choose>
 													</xsl:otherwise>
 												</xsl:choose>
-											</xsl:element>
-										</w:r>
-									</w:p>
-								</w:tc>
+											</w:pPr>
+											<w:r>
+												<w:rPr>
+													<xsl:if test="$row-type = 'header' or $row-type = 'row-highlight'">
+														<w:b/>
+														<w:bCs/>
+													</xsl:if>
+													<w:sz w:val="16"/>
+													<w:szCs w:val="16"/>
+												</w:rPr>
+												<xsl:element name="w:t">
+													<xsl:choose>
+														<xsl:when test="$row-type = 'header' or $cell-type = 'string'">
+															<xsl:value-of select="_ni:pretty-print(string(.), false())"/>
+														</xsl:when>
+														<xsl:otherwise>
+															<xsl:value-of select="_ni:pretty-print(concat('ni:', $cell-type, '(&quot;', string(.), '&quot;)'), true())"/>
+														</xsl:otherwise>
+													</xsl:choose>
+												</xsl:element>
+											</w:r>
+										</w:p>
+									</w:tc>
+								</xsl:if>
 							</xsl:for-each>
 						</w:tr>
 					</xsl:when>
