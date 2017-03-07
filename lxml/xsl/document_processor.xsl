@@ -159,8 +159,8 @@
 			<xsl:otherwise>
 				<xsl:variable name="part" select="regexp:match($addr, '([A-Za-z0-9]+)!([A-Z]+)([0-9]+)')"/>
 				<xsl:variable name="table" select="$part[2]"/>
-				<xsl:variable name="row" select="$part[3]"/>
-				<xsl:variable name="cell" select="$part[4]"/>
+				<xsl:variable name="row" select="$part[4]"/>
+				<xsl:variable name="cell" select="$part[3]"/>
 				<xsl:variable name="value" select="$db/Database/Table[@name = $table]/Row[@R = $row]/Cell[@C = $cell]"/>
 				
 				<xsl:choose>

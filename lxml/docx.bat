@@ -9,14 +9,21 @@ set LOG=1
 
 :parse_args
 if "%1"=="-db" goto set_db
+if "%1"=="-db-out" goto set_db_out
 if "%1"=="-doc" goto set_doc
-if "%1"=="-out" goto set_out
+if "%1"=="-doc-out" goto set_out
 if "%1"=="-dummy" goto set_dummy
 if "%1"=="-log" goto set_log
 goto GO_XSL
 
 :set_db
 set DB=%2
+shift
+shift
+goto parse_args
+
+:set_db_out
+set DB_OUT=%2
 shift
 shift
 goto parse_args
